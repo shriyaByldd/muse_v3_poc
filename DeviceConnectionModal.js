@@ -13,7 +13,7 @@ import { Device } from "react-native-ble-plx";
 
 const DeviceModalListItem = (props) => {
   const { item, connectToPeripheral, closeModal } = props;
-
+ console.log(item,'item')
   const connectAndCloseModal = useCallback(() => {
     connectToPeripheral(item.item);
     closeModal();
@@ -25,7 +25,7 @@ const DeviceModalListItem = (props) => {
       style={modalStyle.ctaButton}
     >
       <Text style={modalStyle.ctaButtonText}>
-        {item.item.name ?? item.item.localName}
+        {item.name ?? item.name}
       </Text>
     </TouchableOpacity>
   );
@@ -34,8 +34,11 @@ const DeviceModalListItem = (props) => {
 const DeviceModal= (props) => {
   const { devices, visible, connectToPeripheral, closeModal } = props;
 
+  console.log(devices,'chle')
+
   const renderDeviceModalListItem = useCallback(
     (item) => {
+      console.log(item,'cljalj')
       return (
         <DeviceModalListItem
           item={item}
@@ -58,11 +61,18 @@ const DeviceModal= (props) => {
         <Text style={modalStyle.modalTitleText}>
           Tap on a device to connect
         </Text>
-        <FlatList
+       
+             <TouchableOpacity style={{borderWidth:1,padding:10}} onPress={()=>connectToPeripheral(devices.id)}>
+              <Text>
+                {devices.name}
+              </Text>
+            </TouchableOpacity>
+        
+        {/* <FlatList
           contentContainerStyle={modalStyle.modalFlatlistContiner}
           data={devices}
           renderItem={renderDeviceModalListItem}
-        />
+        /> */}
       </SafeAreaView>
     </Modal>
   );

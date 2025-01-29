@@ -9,7 +9,6 @@ class CommandResponse {
   payload = new Uint8Array();
 
   constructor(buffer: Uint8Array | null) {
-    console.log(buffer,'check buffer value')
     if (buffer != null) {
       this.rx = buffer[0];
       this.tx = buffer[2];

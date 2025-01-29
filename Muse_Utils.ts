@@ -90,8 +90,8 @@ class Muse_Utils {
     // Uncomment and implement if needed
     // if (channel == CommunicationChannel.CHANNEL_USB)
     //     return WrapMessage(buffer);
-  
-    return buffer; // Return the Uint8Array directly
+    return Array.from(buffer);
+    // return buffer; // Return the Uint8Array directly
   }
   
   static Cmd_StartLog(
@@ -187,6 +187,7 @@ class Muse_Utils {
     // if (channel == CommunicationChannel.CHANNEL_USB)
     //   return WrapMessage(buffer);
   
+    return Array.from(buffer);
     return buffer; // Return the Uint8Array directly
   }
   
@@ -370,7 +371,7 @@ class Muse_Utils {
 
   static Dec_BatteryCharge(response: CommandResponse) {
     // Decode battery charge (percentage) value given command response
-    console.log(response,'checkbatres')
+    // console.log(response,'checkbatres')
 
     if (
       (response.tx & 0x7f) == Muse_HW.Command.CMD_BATTERY_CHARGE &&
